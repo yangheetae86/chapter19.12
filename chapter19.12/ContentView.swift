@@ -9,8 +9,35 @@
 import SwiftUI
 
 struct ContentView: View {
+    
     var body: some View {
-        Text("Hello, World!")
+        
+        MyVStack {
+            Text("1")
+            Text("1")
+            HStack {
+                Image(systemName: "star")
+                Image(systemName: "star")
+                Image(systemName: "star")
+            }
+        }
+        
+    }
+}
+
+struct MyVStack<Content: View>: View {
+    
+    let content: () -> Content
+    
+    init(@ViewBuilder content: @escaping () -> Content) {
+        self.content = content
+    }
+    
+    var body: some View {
+        VStack(spacing: 0) {
+            content()
+        }
+        .font(.largeTitle)
     }
 }
 
